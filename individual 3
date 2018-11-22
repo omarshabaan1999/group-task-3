@@ -1,0 +1,52 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+void swap(char *a, char *b)
+{
+*a = *a - *b;
+*b = *b + *a;
+*a = *b - *a;
+}
+
+string sort(string str)
+{
+for (int i = 0, n = 0; n < str.length();)
+{
+if (str[i] > str[i + 1])
+{
+swap(str[i], str[i + 1]);
+n = 0;
+}
+else
+++n;
+(i < (str.length() - 2)) ? ++i : i = 0;
+}
+return(str);
+}
+
+void premute(string str, int a)
+{
+int i;
+if (a == (str.length()-1))
+cout << str << "\n";
+else
+{
+for (i = a; i < str.length(); ++i)
+{
+swap(str[a], str[i]);
+premute(str, a + 1);
+swap(str[a], str[i]);
+}
+}
+}
+
+int main()
+{
+string sequence;
+cout << "enter a sequence of charecters\n";
+cin >> sequence;
+sequence = sort(sequence);
+premute(sequence, 0);
+
+}
